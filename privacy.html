@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — AutoInv</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+      color: #202124;
+      line-height: 1.7;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    a { color: #1a73e8; }
+    h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+    .updated { font-size: 14px; color: #5f6368; margin-bottom: 40px; }
+    h2 { font-size: 20px; font-weight: 600; margin-top: 36px; margin-bottom: 12px; }
+    p, li { font-size: 15px; margin-bottom: 12px; }
+    ul { padding-left: 24px; }
+    .back { display: inline-block; margin-bottom: 32px; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back">&larr; Back to AutoInv</a>
+
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: February 13, 2026</p>
+
+  <p>AutoInv ("we", "our", "the add-on") is a Google Workspace Add-on that extracts structured data from invoice text. This policy explains what data we access, how we use it, and your rights.</p>
+
+  <h2>1. What Data We Access</h2>
+  <p>AutoInv requests the following Google OAuth scopes:</p>
+  <ul>
+    <li><strong>Google Sheets (read/write)</strong> — to read invoice text from cells and write extracted data back to your spreadsheet.</li>
+    <li><strong>Gmail (read and modify)</strong> — to read unread emails with a label you specify, extract invoice data from them, and mark them as read after processing. We never send, delete, or forward emails.</li>
+    <li><strong>User email address</strong> — to verify your license status with the Google Workspace Marketplace.</li>
+  </ul>
+
+  <h2>2. How We Process Your Data</h2>
+  <p>When you extract invoice data (manually or via Gmail import), the text content of the invoice is sent to the <strong>Groq API</strong> (a third-party AI inference service) for processing. The Groq API analyzes the text and returns structured fields (invoice number, date, vendor, amount, due date).</p>
+  <ul>
+    <li>We send only the invoice text — no email metadata, no attachments, no personal information beyond what is in the invoice itself.</li>
+    <li>Groq's privacy policy is available at <a href="https://groq.com/privacy-policy/" target="_blank">https://groq.com/privacy-policy/</a>.</li>
+  </ul>
+
+  <h2>3. What We Store</h2>
+  <ul>
+    <li><strong>API key:</strong> Your Groq API key is stored in Google Apps Script's ScriptProperties and in a hidden sheet within your spreadsheet. It never leaves Google's infrastructure except when making API calls to Groq.</li>
+    <li><strong>Processed message IDs:</strong> Gmail message IDs of successfully processed emails are stored in a hidden sheet within your spreadsheet to prevent duplicate imports. These are automatically deleted after 30 days.</li>
+    <li><strong>Settings:</strong> Your Gmail label preference and auto-import toggle are stored in your spreadsheet and in ScriptProperties.</li>
+  </ul>
+  <p><strong>We do not store any data on external servers.</strong> All data stays within your Google account (your spreadsheet and Apps Script properties).</p>
+
+  <h2>4. What We Do Not Do</h2>
+  <ul>
+    <li>We do not sell, share, or rent your data to third parties.</li>
+    <li>We do not store invoice content after extraction is complete.</li>
+    <li>We do not access emails outside the label you configure.</li>
+    <li>We do not delete or send emails on your behalf.</li>
+    <li>We do not use your data for advertising or analytics.</li>
+    <li>We do not collect usage telemetry or tracking data.</li>
+  </ul>
+
+  <h2>5. Third-Party Services</h2>
+  <p>AutoInv uses the following third-party service:</p>
+  <ul>
+    <li><strong>Groq API</strong> (groq.com) — for AI-powered text extraction. Invoice text is sent to Groq's servers for processing. Groq processes the data according to their own privacy policy.</li>
+  </ul>
+
+  <h2>6. Data Security</h2>
+  <ul>
+    <li>All communication with the Groq API uses HTTPS encryption.</li>
+    <li>Your API key is stored server-side and is never exposed to the client-side sidebar interface.</li>
+    <li>The add-on's network access is restricted via a URL whitelist in the manifest (only api.groq.com and appsmarket.googleapis.com).</li>
+  </ul>
+
+  <h2>7. Your Rights</h2>
+  <ul>
+    <li>You can <strong>revoke access</strong> at any time by uninstalling the add-on from Google Sheets (Extensions > Add-ons > Manage add-ons).</li>
+    <li>You can <strong>delete stored data</strong> by removing the hidden sheets (_config, _processed_ids) from your spreadsheet.</li>
+    <li>You can <strong>revoke OAuth permissions</strong> at <a href="https://myaccount.google.com/permissions" target="_blank">https://myaccount.google.com/permissions</a>.</li>
+  </ul>
+
+  <h2>8. Children's Privacy</h2>
+  <p>AutoInv is not directed at children under 13 and we do not knowingly collect data from children.</p>
+
+  <h2>9. Changes to This Policy</h2>
+  <p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated "Last updated" date.</p>
+
+  <h2>10. Contact</h2>
+  <p>If you have questions about this privacy policy or your data, contact us at:</p>
+  <!-- TODO: Replace with your actual contact email -->
+  <p><strong>Email:</strong> <a href="mailto:guillermollopis@gmail.com">guillermollopis@gmail.com</a></p>
+
+</body>
+</html>
