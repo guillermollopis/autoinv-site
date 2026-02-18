@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Las Mejores Plantillas Gratuitas de Control de Facturas en Google Sheets (2026) &mdash; AutoInv</title>
+  <meta name="description" content="Descubre las 5 mejores plantillas gratuitas de control de facturas en Google Sheets. Seguimiento de pagos, importes pendientes y fechas de vencimiento. Ideal para aut&oacute;nomos y peque&ntilde;os empresarios en Espa&ntilde;a y Latinoam&eacute;rica.">
+  <meta name="keywords" content="plantilla control facturas google sheets, plantilla facturas gratis, seguimiento facturas google sheets, plantilla factura aut&oacute;nomos, control de facturas hoja de c&aacute;lculo">
+  <meta property="og:title" content="Las Mejores Plantillas Gratuitas de Control de Facturas en Google Sheets (2026)">
+  <meta property="og:description" content="Comparativa de las 5 mejores plantillas gratuitas para controlar facturas en Google Sheets. Con tabla comparativa, consejos para elegir y c&oacute;mo automatizar la entrada de datos.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://guillermollopis.github.io/autoinv-site/es/blog/mejores-plantillas-control-facturas-google-sheets.html">
+  <meta property="og:locale" content="es_ES">
+  <link rel="canonical" href="https://guillermollopis.github.io/autoinv-site/es/blog/mejores-plantillas-control-facturas-google-sheets.html">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+      color: #202124;
+      line-height: 1.6;
+    }
+    a { color: #1a73e8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Nav */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 24px;
+    }
+    .logo { font-size: 22px; font-weight: 700; color: #1a73e8; }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul a { color: #5f6368; font-size: 15px; font-weight: 500; }
+    nav ul a:hover { color: #1a73e8; text-decoration: none; }
+
+    /* Language switch */
+    .lang-switch {
+      text-align: center;
+      padding: 16px 24px 0;
+      font-size: 14px;
+      color: #5f6368;
+    }
+
+    /* Article header */
+    .article-header {
+      text-align: center;
+      padding: 60px 24px 40px;
+      background: linear-gradient(180deg, #e8f0fe 0%, #fff 100%);
+    }
+    .article-header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      max-width: 740px;
+      margin: 0 auto 16px;
+      line-height: 1.25;
+    }
+    .article-header .meta {
+      font-size: 15px;
+      color: #5f6368;
+    }
+
+    /* Article content */
+    .article-content {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    .article-content h2 {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 48px 0 16px;
+      color: #202124;
+    }
+    .article-content h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 32px 0 12px;
+      color: #202124;
+    }
+    .article-content p {
+      font-size: 17px;
+      color: #3c4043;
+      margin-bottom: 16px;
+    }
+    .article-content ul, .article-content ol {
+      margin: 0 0 16px 24px;
+      font-size: 17px;
+      color: #3c4043;
+    }
+    .article-content li {
+      margin-bottom: 8px;
+    }
+
+    /* Step images */
+    .step-img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      margin: 16px 0;
+    }
+
+    /* Invoice example */
+    .invoice-example {
+      background: #f8f9fa;
+      padding: 24px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-x: auto;
+      margin: 16px 0 24px;
+      border: 1px solid #e0e0e0;
+      white-space: pre;
+      color: #202124;
+    }
+
+    /* Comparison table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin: 16px 0 24px;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 16px 24px;
+      text-align: left;
+      font-size: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .comparison-table th {
+      background: #1a73e8;
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table td:nth-child(2),
+    .comparison-table td:nth-child(3),
+    .comparison-table th:nth-child(2),
+    .comparison-table th:nth-child(3) {
+      text-align: center;
+    }
+
+    /* Output table */
+    .output-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin: 16px 0 24px;
+    }
+    .output-table th,
+    .output-table td {
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .output-table th {
+      background: #1a73e8;
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .output-table tr:last-child td { border-bottom: none; }
+    .output-table td {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+    }
+
+    /* FAQ */
+    .faq-item {
+      margin-bottom: 28px;
+    }
+    .faq-item h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #202124;
+    }
+    .faq-item p {
+      font-size: 16px;
+      color: #3c4043;
+      margin-bottom: 0;
+    }
+
+    /* CTA section */
+    .cta {
+      padding: 60px 24px;
+      text-align: center;
+      background: #f8f9fa;
+    }
+    .cta h2 {
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .cta p {
+      font-size: 17px;
+      color: #5f6368;
+      margin-bottom: 32px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+    .btn-primary {
+      background: #1a73e8;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #1557b0;
+      text-decoration: none;
+    }
+
+    /* Step tutorial */
+    .step-block {
+      margin: 24px 0;
+      padding: 24px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+    }
+    .step-block h3 {
+      margin-top: 0;
+    }
+    .step-number-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: #1a73e8;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 15px;
+      font-weight: 700;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .pro-badge {
+      display: inline-block;
+      background: #e8f0fe;
+      color: #1a73e8;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 24px;
+      background: #202124;
+      color: #9aa0a6;
+      text-align: center;
+      font-size: 14px;
+    }
+    footer a { color: #8ab4f8; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .article-header h1 { font-size: 26px; }
+      nav ul { gap: 16px; }
+      .comparison-table th,
+      .comparison-table td {
+        padding: 12px 14px;
+        font-size: 14px;
+      }
+      .invoice-example {
+        font-size: 12px;
+        padding: 16px;
+      }
+      .step-block {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../../" class="logo">AutoInv</a>
+    <ul>
+      <li><a href="../../#how-it-works">C&oacute;mo Funciona</a></li>
+      <li><a href="../../#features">Funciones</a></li>
+      <li><a href="./">Blog</a></li>
+      <li><a href="../../#install">Instalar</a></li>
+    </ul>
+  </nav>
+
+  <div class="lang-switch">
+    <a href="../../blog/">English</a> &middot; <strong>Espa&ntilde;ol</strong>
+  </div>
+
+  <header class="article-header">
+    <h1>Las Mejores Plantillas Gratuitas de Control de Facturas en Google Sheets (2026)</h1>
+    <div class="meta">18 de febrero de 2026 &middot; 7 min de lectura</div>
+  </header>
+
+  <article class="article-content">
+
+    <!-- 1. INTRO -->
+    <h2>No hace falta empezar de cero</h2>
+
+    <p>Si llevas el control de facturas en Google Sheets, probablemente ya sabes que montar una hoja desde cero lleva su tiempo. Hay que pensar en las columnas, en los formatos de fecha, en c&oacute;mo calcular los importes pendientes, en c&oacute;mo marcar qu&eacute; facturas est&aacute;n pagadas y cu&aacute;les no. La buena noticia es que no tienes que inventar la rueda: hay plantillas gratuitas que te dan una estructura lista para usar desde el primer minuto.</p>
+
+    <p>Pero aqu&iacute; viene la pregunta real, la que casi nadie hace: una vez que tienes la plantilla perfecta, &iquest;c&oacute;mo la rellenas de forma eficiente? Porque de nada sirve tener la mejor hoja de c&aacute;lculo del mundo si cada factura que recibes la tienes que copiar a mano, dato por dato. En este art&iacute;culo te presentamos las 5 mejores plantillas gratuitas de control de facturas para Google Sheets, y al final te contamos c&oacute;mo puedes automatizar la parte m&aacute;s aburrida del proceso.</p>
+
+    <!-- 2. TOP 5 PLANTILLAS -->
+    <h2>Las 5 mejores plantillas gratuitas de control de facturas</h2>
+
+    <h3>1. Smartsheet &mdash; Plantilla de seguimiento de facturas</h3>
+
+    <p>Smartsheet ofrece una plantilla de seguimiento de facturas que puedes descargar de forma gratuita y abrir directamente en Google Sheets. Es una de las opciones m&aacute;s completas que vas a encontrar sin pagar nada. Incluye columnas para el n&uacute;mero de factura, nombre del cliente, importe total, fecha de env&iacute;o, fecha de vencimiento, estado del pago y el importe ya pagado. Todo est&aacute; organizado de forma clara, con formato condicional que te ayuda a ver de un vistazo qu&eacute; facturas est&aacute;n pendientes.</p>
+
+    <p><strong>Ideal para:</strong> aut&oacute;nomos con pocos clientes que necesitan un sistema de seguimiento sencillo pero completo. Si gestionas entre 5 y 30 facturas al mes, esta plantilla te va a cubrir de sobra.</p>
+
+    <h3>2. Coefficient &mdash; Invoice Tracking Template</h3>
+
+    <p>Coefficient es una extensi&oacute;n para Google Sheets que ofrece plantillas gratuitas con conexi&oacute;n a datos en tiempo real. Su plantilla de seguimiento de facturas incluye seguimiento del estado de pago, c&aacute;lculo autom&aacute;tico de importes pendientes y un an&aacute;lisis de antig&uuml;edad de la deuda. Esto &uacute;ltimo es especialmente &uacute;til: te muestra cu&aacute;nto tiempo llevan pendientes las facturas sin cobrar, agrupadas por tramos (30, 60, 90 d&iacute;as).</p>
+
+    <p><strong>Ideal para:</strong> negocios que quieren c&aacute;lculos autom&aacute;ticos sin escribir f&oacute;rmulas complicadas. Si te interesa tener un panel de control con m&eacute;tricas de cobro, esta es tu plantilla.</p>
+
+    <h3>3. Xappex &mdash; Invoice Tracker</h3>
+
+    <p>Si lo que buscas es algo limpio y sin complicaciones, la plantilla de Xappex te va a gustar. Es totalmente gratuita, se abre en Google Sheets sin ning&uacute;n problema y tiene un dise&ntilde;o minimalista que va al grano. Las columnas b&aacute;sicas est&aacute;n ah&iacute; (n&uacute;mero de factura, cliente, importe, fecha), y los estados son los tres esenciales: pagada, pendiente y vencida. Nada m&aacute;s, nada menos.</p>
+
+    <p><strong>Ideal para:</strong> quien busca algo minimalista y funcional. Si no quieres gr&aacute;ficos ni an&aacute;lisis avanzados, solo saber qu&eacute; te deben y desde cu&aacute;ndo, Xappex te resuelve la papeleta en cinco minutos.</p>
+
+    <h3>4. FreshBooks &mdash; Plantilla para Google Sheets</h3>
+
+    <p>FreshBooks es una de las empresas m&aacute;s reconocidas en el mundo de la facturaci&oacute;n online, y ofrecen una plantilla gratuita para Google Sheets que refleja su experiencia. El dise&ntilde;o es profesional y cuidado, con una estructura pensada no solo para hacer seguimiento de facturas, sino tambi&eacute;n para poder generar facturas presentables directamente desde la hoja. Incluye campos para los datos de tu empresa, los del cliente, l&iacute;neas de detalle, impuestos y totales.</p>
+
+    <p><strong>Ideal para:</strong> freelancers que necesitan tanto enviar facturas como llevar un control de las que reciben. Si eres dise&ntilde;ador, programador, consultor o cualquier profesional independiente, esta plantilla cubre las dos necesidades con un aspecto muy profesional.</p>
+
+    <h3>5. Plantilla integrada de Google Sheets</h3>
+
+    <p>Esta es la opci&oacute;n que menos gente conoce, pero es la m&aacute;s r&aacute;pida de todas. Abre Google Sheets, haz clic en <strong>Galer&iacute;a de plantillas</strong> en la parte superior y busca &laquo;invoice&raquo; o &laquo;factura&raquo;. Google incluye plantillas b&aacute;sicas de facturaci&oacute;n directamente en Sheets, sin necesidad de descargar nada ni visitar ninguna p&aacute;gina externa. Son plantillas sencillas, pero est&aacute;n listas para usar en 30 segundos.</p>
+
+    <p><strong>Ideal para:</strong> empezar en 30 segundos, sin complicaciones. Si necesitas algo r&aacute;pido para hoy y ya lo personalizar&aacute;s ma&ntilde;ana, esta es tu mejor opci&oacute;n.</p>
+
+    <!-- Tabla comparativa -->
+    <h3>Tabla comparativa</h3>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Plantilla</th>
+          <th>Ideal para</th>
+          <th>Caracter&iacute;sticas</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Smartsheet</td>
+          <td>Aut&oacute;nomos con pocos clientes</td>
+          <td>Seguimiento completo, formato condicional, columna de importe pagado</td>
+          <td>Gratis</td>
+        </tr>
+        <tr>
+          <td>Coefficient</td>
+          <td>Negocios que quieren c&aacute;lculos autom&aacute;ticos</td>
+          <td>Datos en tiempo real, an&aacute;lisis de antig&uuml;edad, importes pendientes</td>
+          <td>Gratis</td>
+        </tr>
+        <tr>
+          <td>Xappex</td>
+          <td>Quien busca algo minimalista</td>
+          <td>Dise&ntilde;o limpio, estados b&aacute;sicos (pagada/pendiente/vencida)</td>
+          <td>Gratis</td>
+        </tr>
+        <tr>
+          <td>FreshBooks</td>
+          <td>Freelancers que env&iacute;an y reciben facturas</td>
+          <td>Dise&ntilde;o profesional, generaci&oacute;n de facturas, campos de empresa</td>
+          <td>Gratis</td>
+        </tr>
+        <tr>
+          <td>Google Sheets (integrada)</td>
+          <td>Empezar en 30 segundos</td>
+          <td>Incluida en Google Sheets, sin descarga, personalizable</td>
+          <td>Gratis</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 3. EL PROBLEMA -->
+    <h2>El problema que las plantillas no resuelven</h2>
+
+    <p>Todas estas plantillas son estupendas para organizar tus datos. Te dan la estructura, las columnas, el formato, los c&aacute;lculos. Pero hay algo que ninguna plantilla puede hacer por ti: rellenar los datos. Cada factura que te llega por email, cada PDF que descargas, sigue siendo un documento que tienes que abrir, leer y copiar a mano. N&uacute;mero de factura, fecha, proveedor, importe, IVA, fecha de vencimiento. Dato a dato, celda a celda.</p>
+
+    <p>Y ah&iacute; es donde est&aacute; el verdadero cuello de botella. No es la estructura de tu hoja de c&aacute;lculo, es la entrada de datos. Si recibes 10, 20 o 50 facturas al mes, puedes estar dedicando horas solo a teclear. Y lo peor no es el tiempo: son los errores. Un importe mal copiado, una fecha confundida, un NIF con un d&iacute;gito cambiado. Errores peque&ntilde;os que se convierten en problemas grandes cuando llega el momento de presentar impuestos o cuadrar cuentas con tu gestor&iacute;a.</p>
+
+    <!-- 4. RELLENAR PLANTILLAS AUTOMATICAMENTE -->
+    <h2>C&oacute;mo rellenar tus plantillas autom&aacute;ticamente</h2>
+
+    <p>Herramientas como <a href="../../">AutoInv</a> existen precisamente para resolver este problema. AutoInv es un complemento gratuito para Google Sheets que usa inteligencia artificial para extraer los datos de tus facturas. El funcionamiento es sencillo: pegas el texto de la factura en tu hoja de c&aacute;lculo, pulsas un bot&oacute;n, y los campos se rellenan solos &mdash; n&uacute;mero de factura, fecha, proveedor, importe total, fecha de vencimiento. Si tienes la versi&oacute;n Pro, puedes conectar tu cuenta de Gmail y las facturas que llegan por correo se procesan autom&aacute;ticamente, sin que tengas que tocar nada.</p>
+
+    <p>Lo importante es que funciona con cualquier plantilla de Google Sheets que ya est&eacute;s usando, incluidas todas las que hemos mencionado en este art&iacute;culo. Y est&aacute; dise&ntilde;ado para entender facturas en espa&ntilde;ol: reconoce formatos europeos de fecha (d&iacute;a/mes/a&ntilde;o), importes con coma decimal, IVA, NIF, CIF y todos los campos habituales de las facturas espa&ntilde;olas y latinoamericanas. As&iacute; que si eres aut&oacute;nomo en Espa&ntilde;a o gestionas un negocio en M&eacute;xico, Colombia, Argentina o cualquier otro pa&iacute;s hispanohablante, los datos se extraen correctamente sin necesidad de configurar nada.</p>
+
+    <!-- 5. COMO ELEGIR -->
+    <h2>C&oacute;mo elegir la plantilla adecuada para ti</h2>
+
+    <p>No todas las plantillas sirven para todo el mundo. Antes de elegir, hazte estas preguntas:</p>
+
+    <ul>
+      <li><strong>&iquest;Cu&aacute;ntas facturas gestionas al mes?</strong> Si son menos de 10, cualquier plantilla b&aacute;sica te funcionar&aacute;. Si son m&aacute;s de 30, necesitas una con c&aacute;lculos autom&aacute;ticos y quiz&aacute;s an&aacute;lisis de antig&uuml;edad.</li>
+      <li><strong>&iquest;Necesitas an&aacute;lisis de antig&uuml;edad de la deuda?</strong> Si te importa saber cu&aacute;ntas facturas llevan m&aacute;s de 30, 60 o 90 d&iacute;as sin cobrar, elige una plantilla como la de Coefficient que incluye esta funci&oacute;n.</li>
+      <li><strong>&iquest;Haces seguimiento por cliente o por proveedor?</strong> Algunas plantillas est&aacute;n orientadas a facturas que env&iacute;as (clientes) y otras a facturas que recibes (proveedores). Aseg&uacute;rate de que la que elijas se adapta a tu caso.</li>
+      <li><strong>&iquest;Necesitas soporte multimoneda?</strong> Si trabajas con clientes o proveedores internacionales, busca una plantilla que tenga columna de divisa o que permita a&ntilde;adirla f&aacute;cilmente.</li>
+      <li><strong>&iquest;Tambi&eacute;n necesitas generar facturas?</strong> Si adem&aacute;s de controlar las facturas que recibes quieres crear las que env&iacute;as, la plantilla de FreshBooks es la mejor opci&oacute;n.</li>
+      <li><strong>&iquest;Quieres automatizar la entrada de datos?</strong> Si la respuesta es s&iacute;, cualquier plantilla funciona porque herramientas como AutoInv se integran directamente en Google Sheets, independientemente de la estructura de tu hoja.</li>
+    </ul>
+
+    <!-- 6. PREGUNTAS FRECUENTES -->
+    <h2>Preguntas frecuentes</h2>
+
+    <div class="faq-item">
+      <h3>&iquest;Puedo personalizar estas plantillas?</h3>
+      <p>S&iacute;, todas. Al ser hojas de Google Sheets, puedes a&ntilde;adir columnas, cambiar nombres, modificar colores, a&ntilde;adir f&oacute;rmulas y adaptar la plantilla a tus necesidades espec&iacute;ficas. Lo recomendable es hacer una copia de la plantilla original antes de modificarla, para tener siempre una versi&oacute;n limpia de referencia. Puedes a&ntilde;adir campos como &laquo;categor&iacute;a de gasto&raquo;, &laquo;centro de coste&raquo;, &laquo;m&eacute;todo de pago&raquo; o cualquier otro dato que necesites para tu negocio.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>&iquest;Funcionan en el m&oacute;vil?</h3>
+      <p>S&iacute;. Google Sheets tiene aplicaci&oacute;n m&oacute;vil tanto para Android como para iOS, y todas estas plantillas se pueden ver y editar desde el tel&eacute;fono. Dicho esto, la experiencia es mejor en una pantalla grande, sobre todo si la plantilla tiene muchas columnas. Para consultas r&aacute;pidas &mdash; comprobar si una factura est&aacute; pagada, ver el importe pendiente &mdash; el m&oacute;vil funciona perfectamente.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>&iquest;C&oacute;mo controlo las facturas vencidas?</h3>
+      <p>La mayor&iacute;a de estas plantillas incluyen una columna de &laquo;estado&raquo; donde puedes marcar si la factura est&aacute; pagada, pendiente o vencida. Las m&aacute;s avanzadas, como la de Coefficient, calculan autom&aacute;ticamente si la factura est&aacute; vencida compar&aacute;ndola con la fecha actual. Tambi&eacute;n puedes a&ntilde;adir formato condicional en Google Sheets para que las filas con facturas vencidas se resalten en rojo autom&aacute;ticamente.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>&iquest;Puedo automatizar la entrada de datos?</h3>
+      <p>S&iacute;. Es precisamente lo que hace <a href="../../">AutoInv</a>. En lugar de copiar a mano los datos de cada factura, pegas el texto y la inteligencia artificial extrae los campos autom&aacute;ticamente. La versi&oacute;n gratuita funciona con copiar y pegar; la versi&oacute;n Pro se conecta a tu Gmail y procesa las facturas nuevas sin que tengas que intervenir. Es compatible con facturas en espa&ntilde;ol y formatos europeos.</p>
+    </div>
+
+  </article>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>&iquest;Quieres automatizar la entrada de datos?</h2>
+    <p>Prueba AutoInv gratis y deja de teclear facturas a mano. Funciona con cualquier plantilla de Google Sheets, entiende facturas en espa&ntilde;ol y se instala en menos de un minuto.</p>
+    <a href="#" class="btn btn-primary">Probar AutoInv &mdash; Es gratis</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="../../">Inicio</a>
+      <a href="../../privacy.html">Pol&iacute;tica de Privacidad</a>
+      <a href="../../terms.html">T&eacute;rminos de Servicio</a>
+    </div>
+    <p>&copy; 2026 AutoInv. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
