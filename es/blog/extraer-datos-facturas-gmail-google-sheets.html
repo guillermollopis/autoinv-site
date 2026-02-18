@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C&oacute;mo Extraer Datos de Facturas de Gmail a Google Sheets Autom&aacute;ticamente (2026) &mdash; AutoInv</title>
+  <meta name="description" content="Aprende a extraer datos de facturas de Gmail a Google Sheets autom&aacute;ticamente con AutoInv. Complemento gratuito para automatizar facturas, importar datos y ahorrar horas de trabajo manual. Ideal para aut&oacute;nomos y peque&ntilde;os empresarios.">
+  <meta name="keywords" content="extraer datos facturas google sheets, automatizar facturas gmail, complemento google sheets facturas, importar facturas autom&aacute;ticamente, factura autom&aacute;tica google sheets, herramienta facturas aut&oacute;nomos">
+  <meta property="og:title" content="C&oacute;mo Extraer Datos de Facturas de Gmail a Google Sheets Autom&aacute;ticamente (2026)">
+  <meta property="og:description" content="Tutorial paso a paso para automatizar la extracci&oacute;n de datos de facturas en Google Sheets con inteligencia artificial. Gratis para aut&oacute;nomos y peque&ntilde;os negocios.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://guillermollopis.github.io/autoinv-site/es/blog/extraer-datos-facturas-gmail-google-sheets.html">
+  <meta property="og:locale" content="es_ES">
+  <link rel="canonical" href="https://guillermollopis.github.io/autoinv-site/es/blog/extraer-datos-facturas-gmail-google-sheets.html">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+      color: #202124;
+      line-height: 1.6;
+    }
+    a { color: #1a73e8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Nav */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 24px;
+    }
+    .logo { font-size: 22px; font-weight: 700; color: #1a73e8; }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul a { color: #5f6368; font-size: 15px; font-weight: 500; }
+    nav ul a:hover { color: #1a73e8; text-decoration: none; }
+
+    /* Language switch */
+    .lang-switch {
+      text-align: center;
+      padding: 16px 24px 0;
+      font-size: 14px;
+      color: #5f6368;
+    }
+
+    /* Article header */
+    .article-header {
+      text-align: center;
+      padding: 60px 24px 40px;
+      background: linear-gradient(180deg, #e8f0fe 0%, #fff 100%);
+    }
+    .article-header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      max-width: 740px;
+      margin: 0 auto 16px;
+      line-height: 1.25;
+    }
+    .article-header .meta {
+      font-size: 15px;
+      color: #5f6368;
+    }
+
+    /* Article content */
+    .article-content {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    .article-content h2 {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 48px 0 16px;
+      color: #202124;
+    }
+    .article-content h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 32px 0 12px;
+      color: #202124;
+    }
+    .article-content p {
+      font-size: 17px;
+      color: #3c4043;
+      margin-bottom: 16px;
+    }
+    .article-content ul, .article-content ol {
+      margin: 0 0 16px 24px;
+      font-size: 17px;
+      color: #3c4043;
+    }
+    .article-content li {
+      margin-bottom: 8px;
+    }
+
+    /* Step images */
+    .step-img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      margin: 16px 0;
+    }
+
+    /* Invoice example */
+    .invoice-example {
+      background: #f8f9fa;
+      padding: 24px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-x: auto;
+      margin: 16px 0 24px;
+      border: 1px solid #e0e0e0;
+      white-space: pre;
+      color: #202124;
+    }
+
+    /* Comparison table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin: 16px 0 24px;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 16px 24px;
+      text-align: left;
+      font-size: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .comparison-table th {
+      background: #1a73e8;
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table td:nth-child(2),
+    .comparison-table td:nth-child(3),
+    .comparison-table th:nth-child(2),
+    .comparison-table th:nth-child(3) {
+      text-align: center;
+    }
+
+    /* Output table */
+    .output-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin: 16px 0 24px;
+    }
+    .output-table th,
+    .output-table td {
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .output-table th {
+      background: #1a73e8;
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .output-table tr:last-child td { border-bottom: none; }
+    .output-table td {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+    }
+
+    /* FAQ */
+    .faq-item {
+      margin-bottom: 28px;
+    }
+    .faq-item h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #202124;
+    }
+    .faq-item p {
+      font-size: 16px;
+      color: #3c4043;
+      margin-bottom: 0;
+    }
+
+    /* CTA section */
+    .cta {
+      padding: 60px 24px;
+      text-align: center;
+      background: #f8f9fa;
+    }
+    .cta h2 {
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .cta p {
+      font-size: 17px;
+      color: #5f6368;
+      margin-bottom: 32px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+    .btn-primary {
+      background: #1a73e8;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #1557b0;
+      text-decoration: none;
+    }
+
+    /* Step tutorial */
+    .step-block {
+      margin: 24px 0;
+      padding: 24px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+    }
+    .step-block h3 {
+      margin-top: 0;
+    }
+    .step-number-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: #1a73e8;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 15px;
+      font-weight: 700;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .pro-badge {
+      display: inline-block;
+      background: #e8f0fe;
+      color: #1a73e8;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 24px;
+      background: #202124;
+      color: #9aa0a6;
+      text-align: center;
+      font-size: 14px;
+    }
+    footer a { color: #8ab4f8; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .article-header h1 { font-size: 26px; }
+      nav ul { gap: 16px; }
+      .comparison-table th,
+      .comparison-table td {
+        padding: 12px 14px;
+        font-size: 14px;
+      }
+      .invoice-example {
+        font-size: 12px;
+        padding: 16px;
+      }
+      .step-block {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../../" class="logo">AutoInv</a>
+    <ul>
+      <li><a href="../../#how-it-works">C&oacute;mo Funciona</a></li>
+      <li><a href="../../#features">Funciones</a></li>
+      <li><a href="./">Blog</a></li>
+      <li><a href="../../#install">Instalar</a></li>
+    </ul>
+  </nav>
+
+  <div class="lang-switch">
+    <a href="../../blog/">English</a> &middot; <strong>Espa&ntilde;ol</strong>
+  </div>
+
+  <header class="article-header">
+    <h1>C&oacute;mo Extraer Datos de Facturas de Gmail a Google Sheets Autom&aacute;ticamente (2026)</h1>
+    <div class="meta">18 de febrero de 2026 &middot; 6 min de lectura</div>
+  </header>
+
+  <article class="article-content">
+
+    <!-- 1. EL PROBLEMA -->
+    <h2>El problema: copiar facturas a mano es una p&eacute;rdida de tiempo</h2>
+
+    <p>Si eres aut&oacute;nomo o gestionas un peque&ntilde;o negocio, seguramente conoces bien esta situaci&oacute;n. Te llega una factura por email. La abres, buscas el n&uacute;mero de factura, la fecha, el nombre del proveedor, el importe total y la fecha de vencimiento. Luego abres tu hoja de c&aacute;lculo y tecleas cada dato en la celda correspondiente. Y con la siguiente factura, repites todo el proceso. Factura tras factura, semana tras semana.</p>
+
+    <p>Haz los n&uacute;meros: si cada factura te lleva unos 5 minutos y recibes 20 al mes, est&aacute;s dedicando casi 2 horas mensuales solo a copiar datos. Y eso sin contar los errores. Un cero de m&aacute;s en el importe, una fecha confundida entre el d&iacute;a y el mes, un n&uacute;mero de factura con una letra mal copiada. Errores peque&ntilde;os que pueden causar problemas grandes cuando llega la hora de cuadrar cuentas con tu gestor&iacute;a.</p>
+
+    <!-- 2. LA SOLUCION -->
+    <h2>La soluci&oacute;n: deja que la inteligencia artificial lo haga por ti</h2>
+
+    <p>AutoInv es un complemento gratuito para Google Sheets que extrae autom&aacute;ticamente los datos de tus facturas usando inteligencia artificial. El funcionamiento es muy sencillo: pegas el texto de la factura en una celda de tu hoja de c&aacute;lculo, pulsas un bot&oacute;n, y en pocos segundos tienes el n&uacute;mero de factura, la fecha, el proveedor, el importe y la fecha de vencimiento organizados en columnas. Sin teclear nada.</p>
+
+    <p>Pero si quieres ir un paso m&aacute;s all&aacute;, la versi&oacute;n Pro te permite conectar directamente tu cuenta de Gmail. Creas una etiqueta como &laquo;facturas&raquo;, la configuras en AutoInv, y el complemento revisa tu correo cada hora. Las facturas nuevas se importan y procesan autom&aacute;ticamente, sin que tengas que hacer absolutamente nada. Te levantas por la ma&ntilde;ana y los datos ya est&aacute;n en tu hoja de c&aacute;lculo.</p>
+
+    <!-- 3. TUTORIAL PASO A PASO -->
+    <h2>Tutorial paso a paso</h2>
+
+    <p>Configurar AutoInv no requiere conocimientos t&eacute;cnicos. En menos de cinco minutos lo tendr&aacute;s funcionando. Aqu&iacute; tienes los pasos:</p>
+
+    <div class="step-block">
+      <h3><span class="step-number-badge">1</span> Instalar AutoInv desde Google Workspace Marketplace</h3>
+      <p>Ve al <a href="#">Google Workspace Marketplace</a> y busca &laquo;AutoInv&raquo;. Haz clic en &laquo;Instalar&raquo; y acepta los permisos que te pida. El complemento necesita acceso a tu hoja de c&aacute;lculo para poder escribir los datos extra&iacute;dos. La instalaci&oacute;n tarda unos segundos.</p>
+      <img src="../../screenshots/step-1-install.png" alt="Instalando AutoInv desde Google Workspace Marketplace" class="step-img">
+    </div>
+
+    <div class="step-block">
+      <h3><span class="step-number-badge">2</span> Abrir Google Sheets y lanzar AutoInv</h3>
+      <p>Abre cualquier hoja de c&aacute;lculo en Google Sheets (o crea una nueva). Ve al men&uacute; <strong>Extensiones</strong>, busca <strong>AutoInv</strong> y haz clic en <strong>Open AutoInv</strong>. Se abrir&aacute; un panel lateral a la derecha de tu hoja. Desde ah&iacute; controlas todo.</p>
+      <img src="../../screenshots/step-2-open.png" alt="Abriendo AutoInv desde el men&uacute; Extensiones de Google Sheets" class="step-img">
+    </div>
+
+    <div class="step-block">
+      <h3><span class="step-number-badge">3</span> Pegar el texto de la factura y extraer los datos</h3>
+      <p>Copia el texto completo de la factura (desde el email, un PDF abierto en el navegador, o cualquier otra fuente) y p&eacute;galo en la celda de la <strong>columna A</strong> de la fila donde quieras que aparezcan los datos. Luego, en el panel de AutoInv, pulsa <strong>&laquo;Extract Invoice Data&raquo;</strong>. En unos segundos, las columnas B a F se rellenar&aacute;n autom&aacute;ticamente con el n&uacute;mero de factura, fecha, proveedor, importe y fecha de vencimiento.</p>
+      <img src="../../screenshots/step-3-extract.png" alt="Pegando el texto de la factura y extrayendo datos con AutoInv" class="step-img">
+    </div>
+
+    <div class="step-block">
+      <h3><span class="step-number-badge">4</span> Configurar la importaci&oacute;n autom&aacute;tica desde Gmail <span class="pro-badge">Pro</span></h3>
+      <p>Este paso es opcional y requiere la suscripci&oacute;n Pro. En tu cuenta de Gmail, crea una etiqueta nueva (por ejemplo, &laquo;facturas&raquo;) y aplic&aacute;sela a los correos que contengan facturas. Puedes hacerlo manualmente o crear un filtro autom&aacute;tico en Gmail. Despu&eacute;s, en el panel de AutoInv, ve a la secci&oacute;n de configuraci&oacute;n de Gmail, escribe el nombre de la etiqueta y activa la importaci&oacute;n autom&aacute;tica. A partir de ese momento, AutoInv revisar&aacute; tu correo cada hora y procesar&aacute; las facturas nuevas sin que tengas que intervenir.</p>
+      <img src="../../screenshots/step-4-gmail.png" alt="Configurando la importaci&oacute;n autom&aacute;tica de facturas desde Gmail" class="step-img">
+    </div>
+
+    <!-- 4. EJEMPLO REAL -->
+    <h2>Ejemplo real: de factura a datos en 3 segundos</h2>
+
+    <p>Veamos un ejemplo concreto. Imagina que recibes esta factura de una dise&ntilde;adora gr&aacute;fica:</p>
+
+    <div class="invoice-example">FACTURA / INVOICE
+
+N&uacute;mero de factura: FD-2025-0077
+Fecha / Date: 15/02/2025
+
+De: Maria Garc&iacute;a &ndash; Freelance Graphic Designer
+    Calle Mayor 12, 28013 Madrid
+    VAT: ES12345678A
+
+Servicios:
+  1. Redise&ntilde;o de logo (20 h &times; &euro;55/h)         &euro;1.100,00
+  2. Manual de identidad corporativa            &euro;350,00
+  3. Pack plantillas redes sociales (5 uds)     &euro;275,00
+
+                            Subtotal:    &euro;1.725,00
+                            IVA (21%):     &euro;362,25
+                            TOTAL:       &euro;2.087,25
+
+Fecha de vencimiento: 15/03/2025</div>
+
+    <p>Pegas ese texto en la columna A, pulsas el bot&oacute;n, y AutoInv genera esto autom&aacute;ticamente:</p>
+
+    <table class="output-table">
+      <thead>
+        <tr>
+          <th>Columna B</th>
+          <th>Columna C</th>
+          <th>Columna D</th>
+          <th>Columna E</th>
+          <th>Columna F</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>FD-2025-0077</td>
+          <td>2025-02-15</td>
+          <td>Maria Garc&iacute;a</td>
+          <td>2087.25</td>
+          <td>2025-03-15</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>El n&uacute;mero de factura, la fecha convertida a formato est&aacute;ndar, el nombre del proveedor, el total con IVA incluido y la fecha de vencimiento. Todo en su sitio, sin errores de transcripci&oacute;n. F&iacute;jate en que AutoInv entiende perfectamente el formato europeo de fechas (d&iacute;a/mes/a&ntilde;o) y los importes con coma decimal.</p>
+
+    <!-- 5. TABLA COMPARATIVA -->
+    <h2>Entrada manual vs. AutoInv</h2>
+
+    <p>Para que veas la diferencia de un vistazo:</p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Entrada manual</th>
+          <th>AutoInv</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tiempo por factura</td>
+          <td>3-5 minutos</td>
+          <td>~3 segundos</td>
+        </tr>
+        <tr>
+          <td>Tiempo mensual (20 facturas)</td>
+          <td>1-2 horas</td>
+          <td>Menos de 1 minuto</td>
+        </tr>
+        <tr>
+          <td>Errores</td>
+          <td>Frecuentes</td>
+          <td>IA consistente</td>
+        </tr>
+        <tr>
+          <td>Funciona con cualquier formato</td>
+          <td>Si puedes leerlo</td>
+          <td>S&iacute;, cualquier idioma</td>
+        </tr>
+        <tr>
+          <td>Coste</td>
+          <td>Tu tiempo</td>
+          <td>Gratis (Pro: $4,99/mes para Gmail)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Con 20 facturas al mes, est&aacute;s ahorrando m&aacute;s de una hora de trabajo repetitivo. Si tu hora de trabajo vale m&aacute;s de 5 euros (y seguro que s&iacute;), la versi&oacute;n Pro se paga sola.</p>
+
+    <!-- 6. PREGUNTAS FRECUENTES -->
+    <h2>Preguntas frecuentes</h2>
+
+    <div class="faq-item">
+      <h3>&iquest;Es gratis?</h3>
+      <p>S&iacute;. La funci&oacute;n de extracci&oacute;n manual (pegar texto y pulsar el bot&oacute;n) es completamente gratuita y lo seguir&aacute; siendo. La versi&oacute;n Pro, que a&ntilde;ade la importaci&oacute;n autom&aacute;tica desde Gmail, la detecci&oacute;n de duplicados y los registros de errores, cuesta $4,99 al mes.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>&iquest;Mis datos est&aacute;n seguros?</h3>
+      <p>S&iacute;. AutoInv no almacena ninguna informaci&oacute;n de tus facturas fuera de tu cuenta de Google. El texto de la factura se env&iacute;a a la inteligencia artificial para procesarlo, pero los datos extra&iacute;dos se escriben directamente en tu Google Sheet. No tenemos base de datos, no guardamos copias. Puedes leer nuestra <a href="../../privacy.html">pol&iacute;tica de privacidad</a> para m&aacute;s detalles.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>&iquest;Funciona con facturas en espa&ntilde;ol?</h3>
+      <p>Perfectamente. AutoInv entiende facturas en cualquier idioma, incluido espa&ntilde;ol. Reconoce formatos europeos de fecha (d&iacute;a/mes/a&ntilde;o), importes con coma decimal, IVA, NIF, CIF, y todos los campos habituales de las facturas espa&ntilde;olas y latinoamericanas.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>&iquest;Qu&eacute; precisi&oacute;n tiene?</h3>
+      <p>Muy alta. La inteligencia artificial acierta en la gran mayor&iacute;a de los casos, incluso con facturas complicadas o formatos inusuales. Dicho esto, siempre recomendamos revisar los datos importantes antes de tomar decisiones basadas en ellos. Es un asistente, no un sustituto de tu criterio.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>&iquest;Necesito conocimientos t&eacute;cnicos?</h3>
+      <p>No. Si sabes usar Google Sheets, sabes usar AutoInv. Instalar el complemento, pegar texto en una celda y pulsar un bot&oacute;n. Eso es todo. No hay que programar nada, no hay que configurar APIs ni escribir f&oacute;rmulas extra&ntilde;as.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>&iquest;Puede leer facturas en PDF?</h3>
+      <p>Todav&iacute;a no directamente. Por ahora, necesitas copiar el texto de la factura y pegarlo en la celda. En la mayor&iacute;a de los PDFs puedes seleccionar todo el texto con Ctrl+A, copiarlo con Ctrl+C y pegarlo en Google Sheets. El soporte nativo para archivos PDF adjuntos est&aacute; planificado para una actualizaci&oacute;n futura.</p>
+    </div>
+
+  </article>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>&iquest;Listo para dejar de teclear facturas?</h2>
+    <p>Instala AutoInv gratis y empieza a extraer datos de facturas autom&aacute;ticamente en tu Google Sheet. Sin compromisos, sin tarjeta de cr&eacute;dito.</p>
+    <a href="#" class="btn btn-primary">Instalar AutoInv &mdash; Es gratis</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="../../">Inicio</a>
+      <a href="../../privacy.html">Pol&iacute;tica de Privacidad</a>
+      <a href="../../terms.html">T&eacute;rminos de Servicio</a>
+    </div>
+    <p>&copy; 2026 AutoInv. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

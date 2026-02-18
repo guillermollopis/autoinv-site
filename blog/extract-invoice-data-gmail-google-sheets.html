@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Automatically Extract Invoice Data from Gmail to Google Sheets (2026) — AutoInv</title>
+  <meta name="description" content="Learn how to extract invoice data from Gmail into Google Sheets automatically using AI. Free step-by-step guide for freelancers and small business owners. Stop typing invoices by hand.">
+  <meta property="og:title" content="How to Automatically Extract Invoice Data from Gmail to Google Sheets (2026)">
+  <meta property="og:description" content="Stop typing invoice data into spreadsheets by hand. Learn how to automate invoice entry from Gmail to Google Sheets with a free AI-powered add-on.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://guillermollopis.github.io/autoinv-site/blog/extract-invoice-data-gmail-google-sheets.html">
+  <link rel="canonical" href="https://guillermollopis.github.io/autoinv-site/blog/extract-invoice-data-gmail-google-sheets.html">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+      color: #202124;
+      line-height: 1.6;
+    }
+    a { color: #1a73e8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Nav */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 24px;
+    }
+    .logo { font-size: 22px; font-weight: 700; color: #1a73e8; }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul a { color: #5f6368; font-size: 15px; font-weight: 500; }
+    nav ul a:hover { color: #1a73e8; text-decoration: none; }
+
+    /* Article Header */
+    .article-header {
+      text-align: center;
+      padding: 60px 24px 40px;
+      background: linear-gradient(180deg, #e8f0fe 0%, #fff 100%);
+    }
+    .article-header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      max-width: 740px;
+      margin: 0 auto 12px;
+      line-height: 1.25;
+    }
+    .article-header .meta {
+      font-size: 15px;
+      color: #5f6368;
+    }
+
+    /* Article Content */
+    .article-content {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    .article-content h2 {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 48px 0 16px;
+      color: #202124;
+    }
+    .article-content h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 32px 0 12px;
+      color: #202124;
+    }
+    .article-content p {
+      font-size: 16px;
+      color: #5f6368;
+      margin-bottom: 16px;
+    }
+    .article-content ul,
+    .article-content ol {
+      margin: 0 0 16px 24px;
+      font-size: 16px;
+      color: #5f6368;
+    }
+    .article-content li {
+      margin-bottom: 8px;
+    }
+
+    /* Step images (placeholders) */
+    .step-img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      margin: 16px 0;
+      display: block;
+    }
+
+    /* Invoice example block */
+    .invoice-example {
+      background: #f8f9fa;
+      padding: 24px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin: 16px 0 24px;
+      border: 1px solid #e0e0e0;
+      color: #202124;
+      white-space: pre;
+    }
+
+    /* Output table */
+    .output-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin: 16px 0 24px;
+    }
+    .output-table th,
+    .output-table td {
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .output-table th {
+      background: #1a73e8;
+      color: #fff;
+      font-weight: 600;
+    }
+    .output-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Comparison table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin: 16px 0 24px;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 16px 24px;
+      text-align: left;
+      font-size: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .comparison-table th {
+      background: #1a73e8;
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+    .comparison-table td:nth-child(2),
+    .comparison-table td:nth-child(3),
+    .comparison-table th:nth-child(2),
+    .comparison-table th:nth-child(3) {
+      text-align: center;
+      width: 160px;
+    }
+
+    /* FAQ */
+    .faq-section {
+      margin-top: 48px;
+    }
+    .faq-item {
+      border-bottom: 1px solid #e0e0e0;
+      padding: 20px 0;
+    }
+    .faq-item:first-of-type {
+      border-top: 1px solid #e0e0e0;
+    }
+    .faq-item h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: #202124;
+      margin: 0 0 8px;
+    }
+    .faq-item p {
+      font-size: 15px;
+      color: #5f6368;
+      margin: 0;
+    }
+
+    /* CTA section */
+    .blog-cta {
+      text-align: center;
+      padding: 48px 24px;
+      margin-top: 48px;
+      background: #e8f0fe;
+      border-radius: 12px;
+    }
+    .blog-cta h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 0 12px;
+      color: #202124;
+    }
+    .blog-cta p {
+      font-size: 17px;
+      color: #5f6368;
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+    .btn-primary {
+      background: #1a73e8;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #1557b0;
+      text-decoration: none;
+    }
+
+    /* Back to blog link */
+    .back-link {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1a73e8;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 24px;
+      background: #202124;
+      color: #9aa0a6;
+      text-align: center;
+      font-size: 14px;
+    }
+    footer a { color: #8ab4f8; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .article-header h1 { font-size: 26px; }
+      nav ul { gap: 16px; }
+      .comparison-table td:nth-child(2),
+      .comparison-table td:nth-child(3),
+      .comparison-table th:nth-child(2),
+      .comparison-table th:nth-child(3) {
+        width: auto;
+        padding: 12px 10px;
+      }
+      .comparison-table th,
+      .comparison-table td {
+        padding: 12px 10px;
+        font-size: 14px;
+      }
+      .output-table th,
+      .output-table td {
+        padding: 10px 8px;
+        font-size: 13px;
+      }
+      .blog-cta { padding: 36px 20px; }
+      .blog-cta h2 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../" class="logo">AutoInv</a>
+    <ul>
+      <li><a href="../#how-it-works">How It Works</a></li>
+      <li><a href="../#features">Features</a></li>
+      <li><a href="./">Blog</a></li>
+      <li><a href="../#install">Install</a></li>
+    </ul>
+  </nav>
+
+  <header class="article-header">
+    <h1>How to Automatically Extract Invoice Data from Gmail to Google Sheets (2026)</h1>
+    <div class="meta">February 18, 2026 &middot; 6 min read</div>
+  </header>
+
+  <article class="article-content">
+
+    <a href="./" class="back-link">&larr; Back to Blog</a>
+
+    <!-- 1. THE PROBLEM -->
+    <h2>The Problem: Manual Invoice Entry Is a Time Sink</h2>
+
+    <p>If you are a freelancer or a small business owner, you know the routine. Invoices land in your inbox. You open each email, find the invoice, and start reading through it line by line. Then you switch over to your spreadsheet and carefully type in the invoice number, the date, the vendor name, the total amount, and the due date. One invoice done. On to the next. It takes about 3 to 5 minutes per invoice, and mistakes happen more often than you would like. A wrong digit in the amount or a misread date can cause real headaches later when you are trying to reconcile your books.</p>
+
+    <p>Now do some quick math. If you receive 20 invoices a month and each one takes 5 minutes to enter, that is almost 2 hours of your time every single month spent on pure data entry. Two hours you could spend on actual work, talking to clients, or simply taking a break. And this does not even count the time you spend fixing errors afterwards. There has to be a better way to handle invoice data entry automation, and there is.</p>
+
+    <!-- 2. THE SOLUTION -->
+    <h2>The Solution: Let AI Do the Typing for You</h2>
+
+    <p>There is a free Google Sheets add-on called <strong>AutoInv</strong> that handles this automatically using AI. You paste invoice text into a cell in your spreadsheet, click a button, and AutoInv reads the invoice and fills in the invoice number, date, vendor, amount, and due date for you in seconds. It works with any invoice format and any language. No templates, no configuration, no technical knowledge needed. Just install and click. It is the simplest way to extract invoice data in Google Sheets without doing the work yourself.</p>
+
+    <p>But it gets even better. If you upgrade to the Pro plan, you can connect your Gmail account and set up auto-import. Just create a Gmail label like "invoices," apply it to incoming invoice emails, and AutoInv will check your inbox every hour and import new invoices into your spreadsheet with zero manual work. It is a complete Gmail invoice to spreadsheet pipeline that runs in the background while you focus on your business.</p>
+
+    <!-- 3. STEP-BY-STEP TUTORIAL -->
+    <h2>Step-by-Step: How to Set Up AutoInv</h2>
+
+    <h3>Step 1: Install AutoInv from the Google Workspace Marketplace</h3>
+
+    <p>Go to the Google Workspace Marketplace and search for "AutoInv." Click "Install" and grant the permissions it needs. The installation takes about 30 seconds. You do not need to download anything to your computer. It works entirely inside Google Sheets.</p>
+
+    <img src="../screenshots/step-1-install.png" alt="Installing AutoInv from Google Workspace Marketplace" class="step-img">
+
+    <h3>Step 2: Open a Google Sheet and Launch AutoInv</h3>
+
+    <p>Open any Google Sheet, or create a new one. Then go to the <strong>Extensions</strong> menu at the top, find <strong>AutoInv</strong>, and click <strong>Open</strong>. A sidebar will appear on the right side of your screen. This is where you control everything. You will see two tabs: one for manual extraction and one for auto-import.</p>
+
+    <img src="../screenshots/step-2-open-sidebar.png" alt="Opening AutoInv from the Extensions menu in Google Sheets" class="step-img">
+
+    <h3>Step 3: Paste Invoice Text and Click "Extract Invoice Data"</h3>
+
+    <p>Copy the text from any invoice you have received, whether it is in an email, a document, or any other format. Paste that text into a cell in column A of your spreadsheet. You can paste multiple invoices in multiple rows if you want. Then click the <strong>"Extract Invoice Data"</strong> button in the AutoInv sidebar. Within a few seconds, columns B through F will be filled with the invoice number, date, vendor name, total amount, and due date. That is it. You just went from manual data entry to AI invoice extraction with one click.</p>
+
+    <img src="../screenshots/step-3-extract.png" alt="Pasting invoice text and clicking Extract Invoice Data in AutoInv" class="step-img">
+
+    <h3>Step 4 (Pro): Set Up Gmail Auto-Import</h3>
+
+    <p>This step is for Pro users who want to automate invoice entry completely. In Gmail, create a label called something like "invoices." Apply this label to emails that contain invoices. You can even set up a Gmail filter to do this automatically. Then go back to AutoInv, open the <strong>Auto-Import</strong> tab in the sidebar, and select the Gmail label you created. Click <strong>Enable</strong>. From now on, AutoInv will check your Gmail every hour, find new emails with that label, extract the invoice data, and add it to your spreadsheet. You never have to open an invoice email again.</p>
+
+    <img src="../screenshots/step-4-auto-import.png" alt="Configuring Gmail auto-import in the AutoInv Auto-Import tab" class="step-img">
+
+    <!-- 4. REAL EXAMPLE -->
+    <h2>Real Example: See It in Action</h2>
+
+    <p>Let us walk through a concrete example. Suppose you receive the following invoice from a supplier:</p>
+
+    <div class="invoice-example">INVOICE # INV-2025-0421
+Date: 2025-04-21
+Vendor: Office Supplies Co.
+
+Items:
+  - Pens (12 pack)               $24.00
+  - A4 Paper (2 reams)           $16.50
+  - Sticky notes (6 pack)         $9.99
+
+Subtotal:   $50.49
+Tax (8%):    $4.04
+Total:      $54.53
+
+Due Date: 2025-05-21</div>
+
+    <p>You paste this text into cell A2 of your spreadsheet and click "Extract Invoice Data." Here is exactly what AutoInv produces:</p>
+
+    <table class="output-table">
+      <thead>
+        <tr>
+          <th>Column B</th>
+          <th>Column C</th>
+          <th>Column D</th>
+          <th>Column E</th>
+          <th>Column F</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>INV-2025-0421</td>
+          <td>2025-04-21</td>
+          <td>Office Supplies Co.</td>
+          <td>54.53</td>
+          <td>2025-05-21</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The AI correctly identified the invoice number, the date it was issued, the vendor name, the total amount including tax, and the payment due date. It ignored the line items and pulled only the structured data you need for your records. This is exactly how a free invoice extractor should work: fast, accurate, and no effort on your part.</p>
+
+    <!-- 5. COMPARISON TABLE -->
+    <h2>Manual Entry vs. AutoInv: Side by Side</h2>
+
+    <p>Still wondering if it is worth switching? Here is a clear comparison:</p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Manual Entry</th>
+          <th>AutoInv</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Time per invoice</td>
+          <td>3-5 minutes</td>
+          <td>~3 seconds</td>
+        </tr>
+        <tr>
+          <td>Monthly time (20 invoices)</td>
+          <td>1-2 hours</td>
+          <td>Under 1 minute</td>
+        </tr>
+        <tr>
+          <td>Error rate</td>
+          <td>Human errors common</td>
+          <td>AI-powered, consistent</td>
+        </tr>
+        <tr>
+          <td>Works with any format</td>
+          <td>If you can read it</td>
+          <td>Yes, any language</td>
+        </tr>
+        <tr>
+          <td>Cost</td>
+          <td>Your time</td>
+          <td>Free (Pro: $4.99/mo for Gmail auto-import)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The numbers speak for themselves. Whether you handle 5 invoices a month or 50, automating invoice entry saves you real time and eliminates the small mistakes that add up over the course of a year.</p>
+
+    <!-- 6. FAQ -->
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <h3>Is it free?</h3>
+        <p>Yes. Manual extraction, where you paste invoice text and click the button, is completely free and will stay free forever. The Pro plan adds Gmail auto-import for $4.99 per month if you want fully hands-off automation.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is my data safe?</h3>
+        <p>Yes. AutoInv does not store your invoice data on any external server. All data stays in your Google Sheet, which you own and control. The AI processes the text and returns the result directly to your spreadsheet. You can read the full details in our <a href="../privacy.html">privacy policy</a>.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What languages does it support?</h3>
+        <p>AutoInv supports any language. Spanish, English, French, German, Portuguese, Italian, and many more. The AI understands them all. You do not need to change any settings. Just paste the invoice text in whatever language it is written in, and AutoInv will extract the data correctly.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How accurate is it?</h3>
+        <p>Very accurate. The AI is trained to understand a wide range of invoice formats and layouts. That said, we always recommend reviewing important data before acting on it, just as you would double-check any automated process. For the vast majority of invoices, the extraction is spot on.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need technical knowledge?</h3>
+        <p>No. Not at all. If you can install a Google Sheets add-on and click a button, you can use AutoInv. There is nothing to configure, no code to write, and no formulas to learn. Install and click. That is it.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can it read PDF invoices?</h3>
+        <p>Not yet. For now, you need to paste the text from the invoice into the spreadsheet. You can copy text from a PDF, an email, or any other source. Direct PDF support is on our roadmap and is planned for a future update.</p>
+      </div>
+    </div>
+
+    <!-- 7. CTA -->
+    <div class="blog-cta">
+      <h2>Ready to Stop Typing Invoices?</h2>
+      <p>Install AutoInv for free and start extracting invoice data in seconds instead of minutes.</p>
+      <a href="#" class="btn btn-primary">Install AutoInv &mdash; It's Free</a>
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../">Home</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Service</a>
+    </div>
+    <p>&copy; 2026 AutoInv. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
